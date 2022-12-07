@@ -1,0 +1,72 @@
+{
+  graphs: [
+    {
+      query: "parser = 'cisco' protocol = *\n| group count = count() by protocol",
+      title: "Protocols",
+      graphStyle: "",
+      showBarsColumn: "false",
+      layout: {
+  h: 14,
+  w: 30,
+  x: 30,
+  y: 1
+}
+    },
+    {
+      graphStyle: "donut",
+      maxPieSlices: 10,
+      query: "parser = 'cisco' (built_1 = true OR built_2 = true OR built_3 = true OR teardown_1 = true OR teardown_2 = true)\n| let action = (built_1 == true OR built_2 == true OR built_3 == true) ? 'build' : 'teardown'\n| group count = count() by action",
+      title: "Actions",
+      layout: {
+  h: 14,
+  w: 30,
+  x: 0,
+  y: 0
+}
+    },
+    {
+      graphStyle: "pie",
+      maxPieSlices: 50,
+      query: "parser = 'cisco' port1 = *\n| group count() by port1",
+      title: "Source Ports",
+      layout: {
+  h: 14,
+  w: 15,
+  x: 30,
+  y: 15
+}
+    },
+    {
+      graphStyle: "pie",
+      maxPieSlices: 50,
+      query: "parser = 'cisco' port2 = *\n| group count() by port2",
+      title: "Destination Ports",
+      layout: {
+  h: 14,
+  w: 15,
+  x: 45,
+  y: 12
+}
+    },
+    {
+      query: "parser = 'cisco' ip1 = *\n| group count = count() by ip1\n| limit 10",
+      title: "Top Source IPs",
+      layout: {
+  h: 14,
+  w: 15,
+  x: 0,
+  y: 14
+}
+    },
+    {
+      query: "parser = 'cisco' ip2 = *\n| group count = count() by ip2\n| limit 10",
+      title: "Top Destination IPs",
+      layout: {
+  h: 14,
+  w: 15,
+  x: 15,
+  y: 14
+}
+    }
+  ]
+ }
